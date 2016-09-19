@@ -466,6 +466,14 @@ bigEcho "Starting up VPN..."
 
 /etc/init.d/vpn-assist start
 
+service vpn-assist restart
+DISTRO=$(lsb_release -r -s)
+if [ "${DISTRO}" = "16.04" ]; then
+  echo "## You seem to be using Ubuntu 16.04."
+  systemctl enable vpn-assist
+  systemctl restart vpn-assist
+fi
+
 #################################################################
 
 echo "============================================================"
